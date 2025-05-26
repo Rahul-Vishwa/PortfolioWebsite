@@ -1,0 +1,10 @@
+.active{
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+.scrolled{
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
