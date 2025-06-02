@@ -1,337 +1,731 @@
 <!-- Header -->
-<div [ngClass]="{ 'scrolled backdrop-blur-2xl': isScrolled }" class="fixed top-0 w-full flex justify-between items-center px-40 mt-10 z-50 transform transition-all ease-in-out">
-  <div class="">
-    <div class="pontano-sans-bold text-[30px] font-bold">Rahul</div>
+<section id="About" #sectionRef>
+  <div [ngClass]="{ 'scrolled backdrop-blur-2xl': isScrolled }" class="fixed top-0 w-full flex justify-between items-center px-6 sm:px-12 lg:px-16 xl:px-40 py-3 md:mt-10 z-40 transform transition-all ease-in-out">
+    <div class="">
+      <div class="pontano-sans-bold text-[25px] sm:text-[35px] md:text-[30px] font-bold">Rahul</div>
+    </div>
+    <div class="hidden md:flex md:gap-8 lg:gap-10">
+      <div>
+        <a class="cursor-pointer" (click)="scrollTo('About')" [class.active]="activeSection === 'About'">
+          About
+        </a>
+      </div>
+      <div>
+        <a class="cursor-pointer" (click)="scrollTo('Services')" [class.active]="activeSection === 'Services'">
+          Services
+        </a>
+      </div>
+      <div>
+        <a class="cursor-pointer" (click)="scrollTo('Projects')" [class.active]="activeSection === 'Projects'">
+          Projects
+        </a>
+      </div>
+      <div>
+        <a class="cursor-pointer" (click)="scrollTo('Testimonials')" [class.active]="activeSection === 'Testimonials'">
+          Testimonials
+        </a>
+      </div>
+      <div>
+        <a class="cursor-pointer" (click)="scrollTo('Blogs')" [class.active]="activeSection === 'Blogs'">
+          Blogs
+        </a>
+      </div>
+    </div>
+    <div class="flex gap-8 text-[18px] md:text-[15px] bellota-text-bold">
+      <a class="cursor-pointer hidden md:block" (click)="scrollTo('Contact')" [class.active]="activeSection === 'Contact'">
+        <button class="hover:cursor-pointer bg-[#211C84] px-[29px] py-[9px] rounded-md transform transition-all duration-300 hover:scale-105">Contact</button>
+      </a>
+      <div #dropdownRef class="relative md:hidden ">
+        <div class="flex items-center" (click)="toggleDropdown()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </div>
+        @if (dropdown) {
+          <div class="absolute top-[40px] right-[224px]">
+            <div class="dropdown-menu absolute z-10 w-56 mt-1 bg-[#ffff] rounded-md shadow-lg overflow-hidden">
+              @for (item of options; track $index) {
+                <a [href]="'#'+item" (click)="toggleDropdown()">
+                  <div class="dropdown-item px-5 py-3 cursor-pointer transition-colors duration-150">
+                    {{item}}
+                  </div>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
   </div>
-  <div class="flex gap-10">
-    <div>
-      <a href="#About" [class.active]="activeSection === 'About'">
-        About
-      </a>
-    </div>
-    <div>
-      <a href="#Services" [class.active]="activeSection === 'Services'">
-        Services
-      </a>
-    </div>
-    <div>
-      <a href="#Projects" [class.active]="activeSection === 'Projects'">
-        Projects
-      </a>
-    </div>
-    <div>
-      <a href="#Testimonials" [class.active]="activeSection === 'Testimonials'">
-        Testimonials
-      </a>
-    </div>
-    <div>
-      <a href="#Blogs" [class.active]="activeSection === 'Blogs'">
-        Blogs
-      </a>
-    </div>
-  </div>
-  <div class="text-[15px] bellota-text-bold">
-    <a href="#Contact" [class.active]="activeSection === 'Contact'">
-      <button class="hover:cursor-pointer bg-[#211C84] px-[29px] py-[9px] rounded-md">Contact</button>
-    </a>
-  </div>
-</div>
 
-<div class="px-40">
-  <!-- Hero Section -->
-  <div id="About" class="mt-52 flex relative">
-    <div>
-      <div class="pontano-sans-bold text-[96px] leading-[100px]">
+</section>
+
+<!-- Hero Section -->
+<div class="px-6 sm:px-12 lg:px-16 xl:px-40">
+  <div class="mt-28 md:mt-36 lg:mt-44 lg:flex lg:relative">
+    <div class="lg:order-2">
+      <div class="md:flex md:justify-center lg:absolute lg:right-[-50px] -z-10">
+        <img src="profile.png" alt="profile" loading="lazy" class="md:w-[550px] md:h-[600px]">
+      </div>
+    </div>
+
+    <div class="mt-3 sm:mt-10 mg:mt-0 lg:order-1">
+      <div class="pontano-sans-bold text-[15.6vw] sm:text-[14.7vw] md:text-[96px] leading-[70px] sm:leading-[100px]">
         Rahul<br>Vishwakarma
       </div>
-      <div class="mt-6 w-[550px]">
+      <div class="mt-3 md:mt-6 sm:text-[20px] md:text-[16px] lg:w-[550px]">
         Helping Healthcare Businesses Grow with Technology, Content & Design. I specialize in HIPAA-compliant solutions, engaging medical content, and user-friendly tools for clinics, startups, and healthcare professionals.
       </div>
-      <div class="text-[15px] bellota-text-bold mt-16">
-        <button class="bg-[#211C84] px-[38px] py-[15px] rounded-md hover:cursor-pointer">Let's Work Together!</button>
+      <div class="md:text-[15px] bellota-text-bold mt-10 md:mt-16">
+        <a href="https://calendly.com/rahulvishwa1403/30min" target="_blank">
+          <button class="bg-[#211C84] px-[38px] py-[15px] rounded-md hover:cursor-pointer transform transition-all duration-300 hover:scale-105">Let's Work Together!</button>
+        </a>
       </div>
     </div>
-    <div>
-      <div class="absolute top-[-120px] right-[-50px] -z-10">
-        <img src="profile.png" alt="profile" class="w-[510px] h-[700px]">
-      </div>
-    </div>
+    
   </div>
 </div>
 
 <!-- Services -->
-<div id="Services" class="mt-24 w-full bg-[#211C84] z-10">
-  <div class="px-40 pt-14 pb-20">
-    <div>
-      <div class="pontano-sans-bold text-[36px]">
-        Services
+<section id="Services" #sectionRef>
+  <div class="mt-12 sm:mt-18 md:px-0 md:mt-24 w-full bg-[#211C84] z-10">
+    <div class="px-6 sm:px-12 lg:px-16 xl:px-40 pt-8 sm:pt-14 pb-12 sm:pb-20">
+      <div>
+        <div class="pontano-sans-bold text-[36px]">
+          Services
+        </div>
+        <div class="sm:text-[20px] mt-2">
+          Tailored Solutions to Help Healthcare Businesses Thrive
+        </div>
       </div>
-      <div class="text-[20px] mt-2">
-        Tailored Solutions to Help Healthcare Businesses Thrive
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-5 sm:mt-10">
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Custom Web Development
+          </div>
+          <div class="sm:text-[20px] md:text-[16px] mt-3">
+            <ul class="list-disc flex flex-col gap-3 justify-between">
+              <li>
+                Responsive websites and patient portals for clinics, hospitals, and telehealth.
+              </li>
+              <li>
+                Scalable architecture for appointment systems, doctor dashboards, and medical forms.
+              </li>
+              <li>
+                Built with Angular, .NET, or preferred tech stack.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            HIPAA & DISHA-Compliant Development
+          </div>
+          <div class="sm:text-[20px] md:text-[16px] mt-3">
+            <ul class="list-disc flex flex-col gap-3">
+              <li>
+                Frontend and backend practices aligned with healthcare data privacy laws.
+              </li>
+              <li>
+                Secure form submissions, access control, and data handling workflows.
+              </li>
+              <li>
+                Integration with HIPAA-compliant services like AWS, Google Cloud, or Firebase.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Appointment Booking Systems
+          </div>
+          <div class="sm:text-[20px] md:text-[16px] mt-3">
+            <ul class="list-disc flex flex-col gap-3">
+              <li>
+                Real-time availability and doctor scheduling.
+              </li>
+              <li>
+                Admin dashboard for appointment management.
+              </li>
+              <li>
+                Patient email/SMS reminders.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Electronic Health Record (EHR/EMR) Features
+          </div>
+          <div class="sm:text-[20px] md:text-[16px] mt-3">
+            <ul class="list-disc flex flex-col gap-3">
+              <li>
+                Patient profiles, visit history, prescriptions, and notes.
+              </li>
+              <li>
+                Role-based access (admin, doctor, nurse, patient).
+              </li>
+              <li>
+                Data export/import options.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            SEO & Performance Optimized Code
+          </div>
+          <div class="sm:text-[20px] md:text-[16px] mt-3">
+            <ul class="list-disc flex flex-col gap-3">
+              <li>
+                Fast-loading apps with Core Web Vitals compliance.
+              </li>
+              <li>
+                Technical SEO setup for medical services and content.
+              </li>
+              <li>
+                Lazy loading, SSR, and caching for better performance.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Maintenance & Technical Support
+          </div>
+          <div class="sm:text-[20px] md:text-[16px] mt-3">
+            <ul class="list-disc flex flex-col gap-3">
+              <li>
+                Ongoing monitoring, bug fixing, and feature updates.
+              </li>
+              <li>
+                Data backups and uptime monitoring.
+              </li>
+              <li>
+                Performance audits and improvement plans.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="grid grid-cols-3 gap-6 mt-10">
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Custom Development
-        </div>
-        <div class="mt-3">
-          Fast, secure websites built for hospitals, clinics, and telehealth platforms.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          HIPAA-Compliant
-        </div>
-        <div class="mt-3">
-          UX/UI focused on patient experience and compliance.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Medical Content Writing
-        </div>
-        <div class="mt-3">
-          Accurate, SEO-optimized articles<br>and blogs for healthcare providers and platforms.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Product Strategy
-        </div>
-        <div class="mt-3">
-          Helping you build patient portals, EHR/EMR tools, or wellness apps.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Healthcare Branding
-        </div>
-        <div class="mt-3">
-          Logos, visual identity, and messaging for health startups and clinics.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          SEO Optimization
-        </div>
-        <div class="mt-3">
-          Ensure your medical website ranks well and loads fast with healthcare-specific SEO strategies.
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
+</section>
 
 <!-- Projects -->
-<div id="Projects" class="px-40">
-  <div class="pt-14 pb-20">
-    <div class="">
-      <div>
-        <div class="pontano-sans-bold text-[36px]">
-          Projects
-        </div>
-        <div class="text-[20px] mt-2">
-          Some Things I’ve Been Working On
-        </div>
-      </div>  
-    </div>
-    <div class="mt-10">
-      <div class="pb-16 w-full rounded-md bg-[#211C84] px-[47px] py-[52px]">
-        <div class="pontano-sans-bold text-[24px]">
-          Appointo, Appointment Booking System
-        </div>
-        <div class="mt-4">
-          Schedule appointments effortlessly with live slot sync, user-friendly dashboards, and auto-reminders. Schedule appointments effortlessly with live slot sync, user-friendly dashboards, and auto-reminders.
-        </div>
-        <div class="grid grid-cols-2 mt-8 gap-6">
-          <div class="bg-[#4D55CC] col-span-1 h-52 rounded-md">
-            
+<section id="Projects" #sectionRef>
+  <div class="px-6 sm:px-12 lg:px-16 xl:px-40">
+    <div class="pt-8 pb-12 sm:pt-14 sm:pb-20">
+      <div class="">
+        <div>
+          <div class="pontano-sans-bold text-[36px]">
+            Projects
           </div>
-          <div class="bg-[#4D55CC] col-span-1 h-52 rounded-md">
+          <div class="sm:text-[20px] mt-2">
+            Some Things I’ve Worked On
+          </div>
+        </div>  
+      </div>
+
+      <div class="mt-5 sm:mt-10 transform transition-all duration-300 hover:scale-102">
+        <div class="pb-16 w-full rounded-md bg-[#211C84] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px]">
+          <div class="md:flex justify-between items-center pontano-sans-bold text-[24px]">
+            <div class="flex">
+                HealWeb HIS - Hospital Management System
+              <div class="flex items-center">
+                <span class="text-[10px] bg-[#4D55CC] px-2 py-[3px] rounded-sm text-nowrap ml-3">Highlight</span>
+              </div>
+            </div>
+            <!-- <div>
+              <button class="mt-6 md:mt-2 flex gap-3 bellota-text-bold text-[16px] cursor-pointer">
+                <div class="sm:text-[20px] md:text-[16px]">
+                  GitHub
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+              </button>
+            </div> -->
+          </div>
+          <div class="mt-6 sm:text-[20px] md:text-[16px]">
+            <div class="space-y-2">
+              <p>
+                Worked at <strong>JPR Systems Pvt. Ltd.</strong> as a key contributor to HealWeb HIS, a comprehensive hospital information system used by clinics and hospitals.
+              </p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Built and optimized core modules like HR, Pharmacy, IPD, Billing, and Reporting.</li>
+                <li>Improved performance by migrating logic to backend and fixing RxJS memory issues.</li>
+                <li>Led a team of 8–9 developers, streamlining delivery and collaboration.</li>
+              </ul>
+            </div>
+          
+            <div
+              class="overflow-hidden transition-[max-height] duration-700 ease-in-out"
+              [style.maxHeight]="showHis ? '1000px' : '0px'"
+            >
+              <div class="mt-5 space-y-4">
+                <div class="font-bold text-[20px]">
+                  My Role
+                </div>
+                <p>
+                  At <strong>JPR Systems Pvt. Ltd.</strong>, I played a key role in the ongoing development of <strong>HealWeb HIS</strong>, a robust Hospital Information System used by clinics and hospitals to manage operations like HR, Pharmacy, IPD, Billing, and more.
+                </p>
+                <p>
+                  My primary responsibilities involved continuously building new features and taking ownership of critical modules such as <strong>HR</strong>, <strong>Pharmacy</strong>, and <strong>IPD</strong>. I worked across both frontend and backend layers of the application, contributing to a wide range of high-impact tasks.
+                </p>
+                <ul class="list-disc list-outside pl-4 space-y-1">
+                  <li class="pl-2">Developed and optimized two business-critical modules by implementing full-stack logic using Angular and ASP.NET Core.</li>
+                  <li class="pl-2">Built dynamic billing and invoice generation features, and created PDF reports for various patient and billing data.</li>
+                  <li class="pl-2">Improved application performance by migrating complex frontend logic to backend services, resulting in a <strong>30% performance boost</strong> and <strong>40% code reduction</strong> in the HR module.</li>
+                  <li class="pl-2">Identified and resolved a significant memory leak in RxJS streams, enhancing the app's stability and efficiency.</li>
+                  <li class="pl-2">Utilized RxJS for handling complex asynchronous flows, leading to a <strong>15% reduction in codebase</strong> while improving functionality by <strong>20%</strong>.</li>
+                  <li class="pl-2">Optimized and refactored legacy code for better performance and maintainability across modules.</li>
+                </ul>
+                <p>
+                  I was frequently entrusted with business-critical tasks and tight deadlines, highlighting the trust placed in my technical judgment and delivery capacity. My role often involved balancing feature delivery with maintaining system performance and code quality.
+                </p>
+                <p>
+                  In addition to engineering work, I also contributed to team collaboration and leadership:
+                </p>
+                <ul class="list-disc list-outside pl-4 space-y-1">
+                  <li class="pl-2">Led and mentored a team of <strong>8–9 developers</strong>, improving productivity by <strong>20%</strong> through better task planning, regular code reviews, and clear communication.</li>
+                  <li class="pl-2">Collaborated with UI/UX designers to ensure user-friendly and intuitive interface experiences.</li>
+                  <li class="pl-2">Worked closely with backend developers to ensure seamless API integration and consistent data flow throughout the application.</li>
+                </ul>
+                <div>
+                  <div>
+                    Technologies used: 
+                  </div>
+                  <div class="mt-3 mb-2 flex gap-3">
+                    <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                      Angular
+                    </button>
+                    <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                      .NET Core
+                    </button>
+                    <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                      RxJS
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5 mt-5">
+              <div>
+                <button (click)="showHis = !showHis" class="cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-sm border">
+                  Read {{ showHis ? 'Less' : 'More' }}
+                </button>
+              </div>
+            </div>
 
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-5">
-      <div class="pb-16 w-full rounded-md bg-[#211C84] px-[47px] py-[52px]">
-        <div class="pontano-sans-bold text-[24px]">
-          Appointo, Appointment Booking System
-        </div>
-        <div class="mt-4">
-          Schedule appointments effortlessly with live slot sync, user-friendly dashboards, and auto-reminders. Schedule appointments effortlessly with live slot sync, user-friendly dashboards, and auto-reminders.
-        </div>
-        <div class="grid grid-cols-2 mt-8 gap-6">
-          <div class="bg-[#4D55CC] col-span-1 h-52 rounded-md">
-            
+      
+      <div class="mt-10 transform transition-all duration-300 hover:scale-102">
+        <div class="pb-16 w-full rounded-md bg-[#211C84] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px]">
+          <div class="md:flex justify-between items-center pontano-sans-bold text-[24px]">
+            <div>
+              Appointo, Appointment Booking System
+            </div>
+            <!-- <div>
+              <button class="mt-6 md:mt-2 flex gap-3 bellota-text-bold text-[16px] cursor-pointer">
+                <div class="sm:text-[20px] md:text-[16px]">
+                  GitHub
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+              </button>
+            </div> -->
           </div>
-          <div class="bg-[#4D55CC] col-span-1 h-52 rounded-md">
+          <div class="mt-6 sm:text-[20px] md:text-[16px]">
+            This project was a personal initiative to create a Minimum Viable Product (MVP) for a modern Appointment Booking System, designed specifically for service-based professionals. My goal was to blend smart scheduling, intuitive role-based access, and performance-first development into a flexible, real-world solution.
 
+            <div
+              class="overflow-hidden transition-[max-height] duration-700 ease-in-out"
+              [style.maxHeight]="showAppointo ? '1000px' : '0px'"
+            >
+              <div class="mt-5 space-y-4">
+                <div class="space-y-8">
+                  <div>
+                    <h2 class="text-[20px] font-bold flex items-center gap-2">
+                      My Role
+                    </h2>
+                    <p class="mt-2">
+                      I built the entire system from scratch — from UI to backend logic — handling:
+                    </p>
+                    <ul class="list-disc list-outside pl-4 mt-2 space-y-1">
+                      <li class="pl-2">System architecture</li>
+                      <li class="pl-2">Frontend & backend development</li>
+                      <li class="pl-2">Role-based authentication flows</li>
+                      <li class="pl-2">Database design</li>
+                      <li class="pl-2">UX planning and admin dashboard layout</li>
+                    </ul>
+                    <p class="mt-2">
+                      I approached it not just as a coder, but as a product problem-solver building something future-ready.
+                    </p>
+                  </div>
+                
+                  <div>
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                      Key Features
+                    </h2>
+                    <ul class="list-disc list-outside pl-4 mt-2 space-y-1">
+                      <li class="pl-2"><strong>Role-Based Access (Auth0):</strong> Separate views and permissions for Admins and Customers.</li>
+                      <li class="pl-2"><strong>Smart Scheduling System:</strong> Admins can define working hours and take leaves; affected bookings are auto-rescheduled for continuity.</li>
+                      <li class="pl-2"><strong>Admin Dashboard:</strong> Easily track bookings, user activity, and manage appointments.</li>
+                      <li class="pl-2"><strong>Email Notifications:</strong> Triggered on booking, cancellation, and rescheduling actions.</li>
+                    </ul>
+                  </div>
+                
+                  <div>
+                    <div>
+                      Technologies used: 
+                    </div>
+                    <div class="mt-3 mb-2 flex gap-3">
+                      <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                        Angular
+                      </button>
+                      <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                        .NET Core
+                      </button>
+                      <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                        RxJS
+                      </button>
+                      <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                        PostgreSQL
+                      </button>
+                      <button class="bg-[#4D55CC] cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-full">
+                        Auth0
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                      What I Learned
+                    </h2>
+                    <ul class="list-disc list-outside pl-4 mt-2 space-y-1">
+                      <li class="pl-2">Architecting scalable Angular applications</li>
+                      <li class="pl-2">Handling complex auth flows using Auth0</li>
+                      <li class="pl-2">Designing real-world scheduling logic</li>
+                      <li class="pl-2">Building production-ready, full-stack systems</li>
+                    </ul>
+                  </div>
+                
+                  <div>
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                      What’s Next (Planned)
+                    </h2>
+                    <ul class="list-disc list-outside pl-4 mt-2 space-y-1">
+                      <li class="pl-2">Email reminders for upcoming appointments</li>
+                      <li class="pl-2">Google Calendar sync</li>
+                      <li class="pl-2">Calendar view for easier visualization</li>
+                      <li class="pl-2">Payment integration (Stripe or Razorpay)</li>
+                      <li class="pl-2">Multi-user organizations for teams & clinics</li>
+                    </ul>
+                  </div>
+                </div>  
+              
+              </div>
+            </div>
+
+            <div class="flex gap-5 mt-5">
+              <div>
+                <button (click)="showAppointo = !showAppointo" class="cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-sm border">
+                  Read {{ showAppointo ? 'Less' : 'More' }}
+                </button>
+              </div>
+              <div>
+                <button class="cursor-pointer px-[23px] py-[4px] bellota-text-bold sm:text-[16px] rounded-sm border">GitHub</button>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-6">
+            <div class="w-full bg-[#4D55CC] col-span-1 md:h-[247px] overflow-hidden rounded-md">
+              <img src="apointment1.png" loading="lazy" alt="dashboard" class="w-full h-full object-cover md:object-left lg:object-center">
+            </div>
+            <div class="w-full bg-[#4D55CC] col-span-1 md:h-[247px] overflow-hidden rounded-md">
+              <img src="allappointments.png" loading="lazy" alt="dashboard" class="w-full h-full object-cover md:object-left lg:object-center">
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="mt-10 transform transition-all duration-300 hover:scale-102">
+        <div class="pb-16 w-full rounded-md bg-[#211C84] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px]">
+          <div class="md:flex justify-between items-center pontano-sans-bold text-[24px]">
+            <div>
+              UI Templates
+            </div>
+          </div>
+          <div class="mt-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+              <div class="rounded-md overflow-hidden">
+                <img src="product1.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+              </div>
+              
+              <div class="rounded-md overflow-hidden">
+                <img src="footer.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+              </div>
+
+              <div class="rounded-md overflow-hidden">
+                <img src="nft.png" loading="lazy" alt="healthapp" class="object-cover w-full">
+              </div>
+
+              <div class="rounded-md overflow-hidden">
+                <img src="nft1.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+              </div>
+
+              <div class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:grid-rows-2 gap-6">
+                <div class="col-span-1 md:row-span-2 rounded-md overflow-hidden">
+                  <img src="responsive.png" loading="lazy" alt="healthapp" class="object-cover w-full md:h-[450px] lg:h-[400px] object-top">
+                </div>
+                <div class="col-span-1 row-span-1 rounded-md overflow-hidden">
+                  <img src="healthapp1.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+                </div>
+                <div class="col-span-1 row-span-1 rounded-md overflow-hidden">
+                  <img src="healthapp2.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+                </div>
+                <div class="col-span-1 row-span-1 rounded-md overflow-hidden">
+                  <img src="healthapp3.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+                </div>
+                <div class="col-span-1 row-span-1 rounded-md overflow-hidden">
+                  <img src="contact.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+                </div>
+              </div>
+
+              
+
+              <div class="rounded-md overflow-hidden">
+                <img src="healthapp.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+              </div>
+
+              <div class="rounded-md overflow-hidden">
+                <img src="healthapp4.png" loading="lazy" alt="healthapp" class="object-cover h-full">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+</section>
 
 <!-- Testimonials -->
-<div id="Testimonials" class="w-full bg-[#211C84] z-10">
-  <div class="px-40 pt-14 pb-20">
-    <div>
-      <div class="pontano-sans-bold text-[36px]">
-        Testimonials
-      </div>
-      <div class="text-[20px] mt-2">
-        What do people say about me
-      </div>
-    </div>
-    <div class="grid grid-cols-3 gap-6 mt-10">
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Pradeep Singh
-        </div>
-        <div class="mt-3">
-          Working with Rahul was always smooth — he just gets things done without overcomplicating anything. Whether it was debugging some tricky issue or picking up tasks last-minute, I could always count on him. He’s one of those people who quietly take ownership and make a difference. Would definitely love to collaborate again if the chance comes up.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Harsh Parihar
-        </div>
-        <div class="mt-3">
-          Working with Rahul was genuinely a great experience. He has this ability to bring clarity and structure to any project, which made a huge difference in how smoothly things ran. What really stood out to me was how dependable he is — you could always count on him to take initiative, figure things out, and deliver without needing constant check-ins. Beyond his technical skills, he’s a practical thinker and a great team player.
-        </div>
-      </div>
-      <div class="col-span-1 w-full bg-[#4D55CC] px-[47px] py-[52px] rounded-md">
-        <div class="pontano-sans-bold text-[24px]">
-          Kamal Verma
-        </div>
-        <div class="mt-3">
-          Working with Rahul was always smooth — he just gets things done without overcomplicating anything. Whether it was debugging some tricky issue or picking up tasks last-minute, I could always count on him. He’s one of those people who quietly take ownership and make a difference. Would definitely love to collaborate again if the chance comes up.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Blogs -->
-<div id="Blogs" class="px-40">
-  <div class="pt-14 pb-20">
-    <div class="">
+<section id="Testimonials" #sectionRef>
+  <div class="w-full bg-[#211C84] z-10">
+    <div class="px-6 sm:px-12 lg:px-16 xl:px-40 pt-8 pb-12 sm:pt-14 sm:pb-20">
       <div>
         <div class="pontano-sans-bold text-[36px]">
-          Blogs
+          Testimonials
         </div>
-        <div class="text-[20px] mt-2">
-          Lessons, Ideas & Things Worth Sharing
-        </div>
-      </div>  
-    </div>
-    <div class="mt-10 grid grid-cols-1 gap-6">
-      <div class="flex items-center justify-between w-full rounded-md bg-[#211C84]">
-        <div class="text-[20px] px-[47px] py-[30px]">
-          How to Build a Secure Appointment Booking System for Clinics and Hospitals
-        </div>
-        <div class="px-[25px]">
-          <button class="px-[23px] py-[3px] bellota-text-bold text-[20px] rounded-sm border">Read</button>
+        <div class="sm:text-[20px] mt-2">
+          What do people say about me
         </div>
       </div>
-      <div class="flex items-center justify-between w-full rounded-md bg-[#211C84]">
-        <div class="text-[20px] px-[47px] py-[30px]">
-          Why HIPAA Compliance Matters in Healthcare Apps (And How to Achieve It)
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5 sm:mt-10">
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Pradeep Singh
+          </div>
+          <div class="mt-3 sm:text-[20px] md:text-[16px]">
+            Working with Rahul was always smooth — he just gets things done without overcomplicating anything. Whether it was debugging some tricky issue or picking up tasks last-minute, I could always count on him. He’s one of those people who quietly take ownership and make a difference. Would definitely love to collaborate again if the chance comes up.
+          </div>
         </div>
-        <div class="px-[25px]">
-          <button class="px-[23px] py-[3px] bellota-text-bold text-[20px] rounded-sm border">Read</button>
+        <div class="col-span-1 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Harsh Parihar
+          </div>
+          <div class="mt-3 sm:text-[20px] md:text-[16px]">
+            Working with Rahul was genuinely a great experience. He has this ability to bring clarity and structure to any project, which made a huge difference in how smoothly things ran. What really stood out to me was how dependable he is — you could always count on him to take initiative, figure things out, and deliver without needing constant check-ins. Beyond his technical skills, he’s a practical thinker and a great team player.
+          </div>
         </div>
-      </div>
-      <div class="flex items-center justify-between w-full rounded-md bg-[#211C84]">
-        <div class="text-[20px] px-[47px] py-[30px]">
-          The Hidden Costs of Ignoring Tech in Your Healthcare Practice
-        </div>
-        <div class="px-[25px]">
-          <button class="px-[23px] py-[3px] bellota-text-bold text-[20px] rounded-sm border">Read</button>
-        </div>
-      </div>
-      <div class="flex items-center justify-between w-full rounded-md bg-[#211C84]">
-        <div class="text-[20px] px-[47px] py-[30px]">
-          How Technology Can Reduce No-Shows and Improve Patient Engagement
-        </div>
-        <div class="px-[25px]">
-          <button class="px-[23px] py-[3px] bellota-text-bold text-[20px] rounded-sm border">Read</button>
+        <div class="col-span-1 md:col-span-2 w-full bg-[#4D55CC] px-[30px] py-[30px] sm:px-[47px] sm:py-[52px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="pontano-sans-bold text-[24px]">
+            Kamal Verma
+          </div>
+          <div class="mt-3 sm:text-[20px] md:text-[16px]">
+            Rahul was a solid teammate throughout our time working together. What stood out to me was how quickly he picked things up and his calm approach even under tight deadlines. He was always willing to help out and never shied away from taking responsibility. Super easy to work with and genuinely reliable.
+            What I really appreciated about Rahul was his team spirit. Despite being a senior, he never showed any sense of superiority—instead, he treated me like a friend, always approachable and supportive. Working with him never felt like a burden; he brought a fun, light-hearted energy to the team that made even the busiest days enjoyable. His way of leading with humility and humor truly makes him a great team player and a joy to collaborate with.
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- Blogs -->
+<section id="Blogs" #sectionRef>
+  <div class="px-6 sm:px-12 lg:px-16 xl:px-40">
+    <div class="pt-8 pb-12 sm:pt-14 sm:pb-20">
+      <div class="">
+        <div>
+          <div class="pontano-sans-bold text-[36px]">
+            Blogs
+          </div>
+          <div class="sm:text-[20px] mt-2">
+            Lessons, Ideas & Things Worth Sharing
+          </div>
+        </div>  
+      </div>
+      <div class="mt-5 sm:mt-10 grid grid-cols-1 gap-6">
+        <div class="sm:flex sm:flex-row items-center justify-between w-full rounded-md bg-[#211C84] transform transition-all duration-300 hover:scale-102">
+          <div class="sm:text-[20px] px-[25px] md:px-[47px] pt-[30px] pb-[20px] sm:py-[30px]">
+            How I Built an Appointment Booking MVP to Solve Real Scheduling Problems
+          </div>
+          <div class="px-[25px] mb-8 sm:mb-0">
+            <a href="https://medium.com/@rahulvishwa1403/how-i-built-an-appointment-booking-mvp-to-solve-real-scheduling-problems-1018f16aa3be" target="_blank">
+              <button class="cursor-pointer px-[23px] py-[3px] bellota-text-bold sm:text-[20px] rounded-sm border">
+                Read
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="sm:flex sm:flex-row items-center justify-between w-full rounded-md bg-[#211C84] transform transition-all duration-300 hover:scale-102">
+          <div class="sm:text-[20px] px-[25px] md:px-[47px] pt-[30px] pb-[20px] sm:py-[30px]">
+            HIPAA Compliance for Freelancers: What You Need to Know Before Building Healthcare Software
+          </div>
+          <div class="px-[25px] mb-8 sm:mb-0">
+            <a href="https://medium.com/@rahulvishwa1403/hipaa-compliance-for-freelancers-what-you-need-to-know-before-building-healthcare-software-84e872d48e04" target="_blank">
+              <button class="cursor-pointer px-[23px] py-[3px] bellota-text-bold sm:text-[20px] rounded-sm border">Read</button>
+            </a>
+          </div>
+        </div>
+        <div class="sm:flex sm:flex-row items-center justify-between w-full rounded-md bg-[#211C84] transform transition-all duration-300 hover:scale-102">
+          <div class="sm:text-[20px] px-[25px] md:px-[47px] pt-[30px] pb-[20px] sm:py-[30px]">
+            Healthcare Freelancing and DISHA Compliance: How to Get Ready Today
+          </div>
+          <div class="px-[25px] mb-8 sm:mb-0">
+            <a href="https://medium.com/@rahulvishwa1403/healthcare-freelancing-and-disha-compliance-how-to-get-ready-today-4d8656b377fb" target="_blank">
+              <button class="cursor-pointer px-[23px] py-[3px] bellota-text-bold sm:text-[20px] rounded-sm border">Read</button>
+            </a>
+          </div>
+        </div>
+        <div class="sm:flex sm:flex-row items-center justify-between w-full rounded-md bg-[#211C84] transform transition-all duration-300 hover:scale-102">
+          <div class="sm:text-[20px] px-[25px] md:px-[47px] pt-[30px] pb-[20px] sm:py-[30px]">
+            Angular v20 is Here — What’s New, and Why It Matters
+          </div>
+          <div class="px-[25px] mb-8 sm:mb-0">
+            <a href="https://medium.com/@rahulvishwa1403/angular-v20-is-here-whats-new-and-why-it-matters-e766abfe7038" target="_blank">
+              <button class="cursor-pointer px-[23px] py-[3px] bellota-text-bold sm:text-[20px] rounded-sm border">Read</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- Contact -->
-<div id="Contact" class="w-full bg-[#211C84] z-10">
-  <div class="px-40 pt-14 pb-20 grid grid-cols-2 gap-30">
-    <div class="flex flex-col">
-      <div class="col-span-2 pontano-sans-bold text-[36px]">
-        Contact
+<section id="Contact" #sectionRef>
+
+  <div class="w-full bg-[#211C84] z-10">
+    <div class="px-6 sm:px-12 lg:px-16 xl:px-40 pt-8 pb-12 sm:pt-14 sm:pb-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-10 xl:gap-30">
+      <div class="flex flex-col">
+        <div class="col-span-2 pontano-sans-bold text-[36px]">
+          Contact
+        </div>
+        <div class="sm:text-[20px] mt-2">
+          Ready to Collaborate? I’d Love to Hear From You
+        </div>
+        <div class="flex flex-col gap-5 justify-between mt-5 sm:mt-10 h-full bg-[#4D55CC] px-[30px] py-[30px] sm:py-[52px] sm:px-[47px] rounded-md transform transition-all duration-300 hover:scale-105">
+          <div class="flex gap-5 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+            </svg>
+            +91 - 9664026341 
+          </div>
+          <div class="flex gap-5 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+            </svg>
+            rahulvishwa1403&commat;gmail.com 
+          </div>
+          <div class="flex gap-5 items-center">
+            <a href="https://www.linkedin.com/in/rahulvishwa1403" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/rahulvishwa1403" class="underline underline-offset-5" target="_blank">
+              linkedin.com/in/rahulvishwa1403
+            </a>
+          </div>
+          <div class="flex gap-5 items-center">
+            <a href="https://github.com/Rahul-Vishwa" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+              </svg>
+            </a>
+            <a href="https://github.com/Rahul-Vishwa" class="underline underline-offset-5" target="_blank">
+              github.com/Rahul-Vishwa
+            </a>
+          </div>
+          <div class="flex gap-5 items-center">
+            <a href="https://medium.com/@rahulvishwa1403" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-medium" viewBox="0 0 16 16">
+                <path d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8m4.95 0c0 2.34-1.01 4.236-2.256 4.236S9.463 10.339 9.463 8c0-2.34 1.01-4.236 2.256-4.236S13.975 5.661 13.975 8M16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795"/>
+              </svg>
+            </a>
+            <a href="https://medium.com/@rahulvishwa1403" class="underline underline-offset-5" target="_blank">
+              medium.com/&commat;rahulvishwa1403
+            </a>
+          </div>
+          <div class="flex gap-5 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+            </svg>
+            Paste any link here
+          </div>
+        </div>
       </div>
-      <div class="text-[20px] mt-2">
-        Ready to Collaborate? I’d Love to Hear From You
+      <div class="grid grid-cols-1 gap-5 sm:gap-8">
+          <div class="flex flex-col">
+            <label for="name" class="pontano-sans-bold text-[20px]">Name</label>
+            <input 
+              type="text" 
+              [class.invalid]="form.controls['name'].touched && form.controls['name'].invalid" 
+              [formControl]="form.controls['name']" 
+              id="name" 
+              class="bg-white h-[50px] rounded-md mt-2 text-black bellota-text-bold px-6 focus-within:border-3 focus-within:border-[#c3c4d0] focus-within:outline-none">
+          </div>
+          <div class="flex flex-col">
+            <label for="name" class="pontano-sans-bold text-[20px]">Email</label>
+            <input 
+              type="text"   
+              [class.invalid]="form.controls['email'].touched && form.controls['email'].invalid" 
+              [formControl]="form.controls['email']"  
+              id="name" 
+              class="bg-white h-[50px] rounded-md mt-2 text-black bellota-text-bold px-6 focus-within:border-3 focus-within:border-[#c3c4d0] focus-within:outline-none">
+          </div>
+          <div class="flex flex-col">
+            <label for="name" class="pontano-sans-bold text-[20px]">Message</label>
+            <textarea 
+              type="text" 
+              [class.invalid]="form.controls['message'].touched && form.controls['message'].invalid" 
+              [formControl]="form.controls['message']" 
+              id="name" 
+              class="resize-none bg-white h-[170px] rounded-md mt-2 text-black bellota-text-bold py-5 px-6 focus-within:border-3 focus-within:border-[#c3c4d0] focus-within:outline-none"></textarea>
+          </div>
+          <div>
+            <button
+              [disabled]="form.invalid"
+              [class.disabled]="form.invalid"
+              (click)="form.valid && submit()"
+              class="px-[29px] py-[10px] bellota-text-bold bg-[#4D55CC] rounded-md transform transition-all duration-300 hover:scale-105"
+            >
+              Send Message
+            </button>
+          </div>
       </div>
-      <div class="flex flex-col gap-5 justify-between mt-10 h-full bg-[#4D55CC] py-[52px] px-[47px] rounded-md">
-        <div class="flex gap-5 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-          </svg>
-          +91 - 9664026341 
-        </div>
-        <div class="flex gap-5 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-          </svg>
-          rahulvishwa1403&commat;gmail.com 
-        </div>
-        <div class="flex gap-5 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-          </svg>
-          linkedin.com/in/rahulvishwa1403
-        </div>
-        <div class="flex gap-5 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-          </svg>
-          github.com/Rahul-Vishwa
-        </div>
-        <div class="flex gap-5 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
-          </svg>
-          Paste any link here
-        </div>
-        <div class="flex gap-5 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
-          </svg>
-          Paste any link here
-        </div>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 gap-8">
-        <div class="flex flex-col">
-          <label for="name" class="pontano-sans-bold text-[20px]">Name</label>
-          <input type="text" id="name" class="bg-white h-[50px] rounded-md mt-2 text-black bellota-text-bold px-6 focus-within:border-3 focus-within:border-[#c3c4d0] focus-within:outline-none">
-        </div>
-        <div class="flex flex-col">
-          <label for="name" class="pontano-sans-bold text-[20px]">Email</label>
-          <input type="text" id="name" class="bg-white h-[50px] rounded-md mt-2 text-black bellota-text-bold px-6 focus-within:border-3 focus-within:border-[#c3c4d0] focus-within:outline-none">
-        </div>
-        <div class="flex flex-col">
-          <label for="name" class="pontano-sans-bold text-[20px]">Message</label>
-          <textarea type="text" id="name" class="resize-none bg-white h-[170px] rounded-md mt-2 text-black bellota-text-bold py-5 px-6 focus-within:border-3 focus-within:border-[#c3c4d0] focus-within:outline-none"></textarea>
-        </div>
-        <div>
-          <button class="px-[29px] py-[10px] bellota-text-bold bg-[#4D55CC] rounded-md">Send Message</button>
-        </div>
     </div>
   </div>
-</div>
-
+</section>
