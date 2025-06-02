@@ -1,7 +1,5 @@
 import { isPlatformBrowser, NgClass, ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -61,13 +59,6 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
       { name: 'twitter:description', content: 'Experienced Full Stack Developer specializing in healthcare solutions using .NET and Angular.' },
       { name: 'twitter:image', content: 'https://yourdomain.com/assets/profile-image.jpg' },
     ]);
-
-    if (isPlatformBrowser(this.platformId)){
-      Aos.init({
-        duration: 1000,
-        once: true
-      });
-    }
 
     this.form = new FormGroup({
       name: new FormControl<string | null>(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern(/^[a-zA-Z\s'-]+$/)]),
